@@ -1,0 +1,248 @@
+// User defined function
+void myblockfunction_Initialization();
+// User defined function
+void myblockfunction_Against();
+// User defined function
+void myblockfunction__Curve_Movement__1__Left_Speed_Left_Speed_2__Right_Speed_Right_Speed_3__Move_Time_Move_Time_4__Wait_Time_Wait_Time(double myblockfunction__Curve_Movement__1__Left_Speed_Left_Speed_2__Right_Speed_Right_Speed_3__Move_Time_Move_Time_4__Wait_Time_Wait_Time__Left_Speed, double myblockfunction__Curve_Movement__1__Left_Speed_Left_Speed_2__Right_Speed_Right_Speed_3__Move_Time_Move_Time_4__Wait_Time_Wait_Time__Right_Speed, double myblockfunction__Curve_Movement__1__Left_Speed_Left_Speed_2__Right_Speed_Right_Speed_3__Move_Time_Move_Time_4__Wait_Time_Wait_Time__Move_Time, double myblockfunction__Curve_Movement__1__Left_Speed_Left_Speed_2__Right_Speed_Right_Speed_3__Move_Time_Move_Time_4__Wait_Time_Wait_Time__Wait_Time);
+// User defined function
+void myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P(double myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P__distance, double myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P__Time, double myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P__Upper_Speed_Limit, double myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P__Lower_Speed_Limit, double myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P__P);
+// User defined function
+void myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit(double myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit__Target_Direction, double myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit__Error_Adjustment, double myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit__Upper_Speed_Limit, double myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit__Lower_Speed_Limit);
+
+int Brain_precision = 0, Console_precision = 0;
+
+float Stay, target_direction, Cumulative_Error, Error_Adjustment, Distance_Traveled, Instant_Speed, Difference, Instant_Speed_L, Instant_Speed_R, Turning_Speed;
+
+float Test[5];
+
+// User defined function
+void myblockfunction_Initialization() {
+  Error_Adjustment = -10.0;
+  Stay = 1.0;
+  L.setMaxTorque(100.0, percent);
+  R.setMaxTorque(100.0, percent);
+  Roller.setVelocity(100.0, percent);
+  Roller.setMaxTorque(100.0, percent);
+  Roller.setStopping(coast);
+  Lifter.setVelocity(100.0, percent);
+  Lifter.setMaxTorque(100.0, percent);
+  Lifter.setStopping(hold);
+  Lifter.setTimeout(3.0, seconds);
+}
+
+// User defined function
+void myblockfunction_Against() {
+  L.setVelocity(30.0, percent);
+  R.setVelocity(30.0, percent);
+  L.spin(reverse);
+  R.spin(reverse);
+}
+
+// User defined function
+void myblockfunction__Curve_Movement__1__Left_Speed_Left_Speed_2__Right_Speed_Right_Speed_3__Move_Time_Move_Time_4__Wait_Time_Wait_Time(double myblockfunction__Curve_Movement__1__Left_Speed_Left_Speed_2__Right_Speed_Right_Speed_3__Move_Time_Move_Time_4__Wait_Time_Wait_Time__Left_Speed, double myblockfunction__Curve_Movement__1__Left_Speed_Left_Speed_2__Right_Speed_Right_Speed_3__Move_Time_Move_Time_4__Wait_Time_Wait_Time__Right_Speed, double myblockfunction__Curve_Movement__1__Left_Speed_Left_Speed_2__Right_Speed_Right_Speed_3__Move_Time_Move_Time_4__Wait_Time_Wait_Time__Move_Time, double myblockfunction__Curve_Movement__1__Left_Speed_Left_Speed_2__Right_Speed_Right_Speed_3__Move_Time_Move_Time_4__Wait_Time_Wait_Time__Wait_Time) {
+  L.setVelocity(myblockfunction__Curve_Movement__1__Left_Speed_Left_Speed_2__Right_Speed_Right_Speed_3__Move_Time_Move_Time_4__Wait_Time_Wait_Time__Left_Speed, percent);
+  R.setVelocity(myblockfunction__Curve_Movement__1__Left_Speed_Left_Speed_2__Right_Speed_Right_Speed_3__Move_Time_Move_Time_4__Wait_Time_Wait_Time__Right_Speed, percent);
+  Brain.Timer.reset();
+  L.spin(forward);
+  R.spin(forward);
+  waitUntil((Brain.Timer.value() > myblockfunction__Curve_Movement__1__Left_Speed_Left_Speed_2__Right_Speed_Right_Speed_3__Move_Time_Move_Time_4__Wait_Time_Wait_Time__Move_Time));
+  if (myblockfunction__Curve_Movement__1__Left_Speed_Left_Speed_2__Right_Speed_Right_Speed_3__Move_Time_Move_Time_4__Wait_Time_Wait_Time__Wait_Time > 0.0) {
+    L.setStopping(brake);
+    R.setStopping(brake);
+    L.stop();
+    R.stop();
+    wait(myblockfunction__Curve_Movement__1__Left_Speed_Left_Speed_2__Right_Speed_Right_Speed_3__Move_Time_Move_Time_4__Wait_Time_Wait_Time__Wait_Time, seconds);
+  }
+}
+
+// User defined function
+void myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P(double myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P__distance, double myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P__Time, double myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P__Upper_Speed_Limit, double myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P__Lower_Speed_Limit, double myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P__P) {
+  if (!(myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P__distance == 0.0)) {
+    // Mode 1 - Distance Control
+    L.setPosition(0.0, degrees);
+    R.setPosition(0.0, degrees);
+    Distance_Traveled = 0.0;
+    while (!(Distance_Traveled > fabs(static_cast<float>(myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P__distance)))) {
+      Distance_Traveled = (fabs(static_cast<float>(L.position(degrees))) + fabs(static_cast<float>(R.position(degrees)))) / 2.0;
+      Instant_Speed = myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P__distance - Distance_Traveled;
+      // Set Upper Speed Limit
+      if (fabs(static_cast<float>(Instant_Speed)) > myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P__Upper_Speed_Limit) {
+        Instant_Speed = (fabs(static_cast<float>(Instant_Speed)) / Instant_Speed) * myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P__Upper_Speed_Limit;
+      }
+      // Set Lower Speed Limit
+      if (fabs(static_cast<float>(Instant_Speed)) < myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P__Lower_Speed_Limit) {
+        Instant_Speed = (fabs(static_cast<float>(Instant_Speed)) / Instant_Speed) * myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P__Lower_Speed_Limit;
+      }
+      // P-Value Adjustment
+      Difference = myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P__P * (target_direction - BrainInertial.rotation());
+      Instant_Speed_L = Instant_Speed + Difference;
+      Instant_Speed_R = Instant_Speed + Difference;
+      // Start Up
+      L.setVelocity(Instant_Speed_L, percent);
+      R.setVelocity(Instant_Speed_R, percent);
+      L.spin(forward);
+      R.spin(forward);
+    wait(20, msec);
+    }
+    L.setStopping(brake);
+    R.setStopping(brake);
+  }
+  else {
+    // Mode 2: Time Control
+    Brain.Timer.reset();
+    while (!(Brain.Timer.value() > fabs(static_cast<float>(myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P__Time)))) {
+      // Start decelerating in the last 0.5 second
+      Instant_Speed = ((myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P__Time / fabs(static_cast<float>(myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P__Time))) * (fabs(static_cast<float>(myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P__Time)) - Brain.Timer.value())) * 200.0;
+      // Set Upper Speed Limit
+      if (fabs(static_cast<float>(Instant_Speed)) > myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P__Upper_Speed_Limit) {
+        Instant_Speed = (fabs(static_cast<float>(Instant_Speed)) / Instant_Speed) * myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P__Upper_Speed_Limit;
+      }
+      // Set Lower Speed Limit
+      if (fabs(static_cast<float>(Instant_Speed)) < myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P__Lower_Speed_Limit) {
+        Instant_Speed = (fabs(static_cast<float>(Instant_Speed)) / Instant_Speed) * myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P__Lower_Speed_Limit;
+      }
+      // P-Value Adjustment
+      Difference = myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P__P * (target_direction - BrainInertial.rotation());
+      Instant_Speed_L = Instant_Speed + Difference;
+      Instant_Speed_R = Instant_Speed + Difference;
+      // Start Up
+      L.setVelocity(Instant_Speed_L, percent);
+      R.setVelocity(Instant_Speed_R, percent);
+      L.spin(forward);
+      R.spin(forward);
+    wait(20, msec);
+    }
+    L.setStopping(brake);
+    R.setStopping(brake);
+  }
+  if (Stay > 0.0) {
+    L.stop();
+    R.stop();
+    wait(0.2, seconds);
+  }
+}
+
+// User defined function
+void myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit(double myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit__Target_Direction, double myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit__Error_Adjustment, double myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit__Upper_Speed_Limit, double myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit__Lower_Speed_Limit) {
+  target_direction = myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit__Target_Direction;
+  // Turn Right
+  if (myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit__Target_Direction > BrainInertial.rotation()) {
+    while (!(BrainInertial.rotation() > myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit__Target_Direction + myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit__Error_Adjustment)) {
+      Turning_Speed = (myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit__Target_Direction + myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit__Error_Adjustment) - BrainInertial.rotation();
+      // Set Upper Speed Limit
+      if (fabs(static_cast<float>(Turning_Speed)) > myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit__Upper_Speed_Limit) {
+        Turning_Speed = (fabs(static_cast<float>(Turning_Speed)) / Turning_Speed) * myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit__Upper_Speed_Limit;
+      }
+      // Set Lower Speed Limit
+      if (fabs(static_cast<float>(Turning_Speed)) < myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P__Lower_Speed_Limit) {
+        Turning_Speed = (fabs(static_cast<float>(Turning_Speed)) / Turning_Speed) * myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P__Lower_Speed_Limit;
+      }
+      L.setVelocity(Turning_Speed, percent);
+      R.setVelocity((-1.0 * Turning_Speed), percent);
+      L.spin(forward);
+      R.spin(forward);
+    wait(20, msec);
+    }
+  }
+  else {
+    // Turn Left
+    while (!(myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit__Target_Direction - myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit__Error_Adjustment > BrainInertial.rotation())) {
+      Turning_Speed = (myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit__Target_Direction - myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit__Error_Adjustment) - BrainInertial.rotation();
+      if (fabs(static_cast<float>(Turning_Speed)) > myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit__Upper_Speed_Limit) {
+        Turning_Speed = (fabs(static_cast<float>(Turning_Speed)) / Turning_Speed) * myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit__Upper_Speed_Limit;
+      }
+      if (fabs(static_cast<float>(Turning_Speed)) < myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit__Lower_Speed_Limit) {
+        Turning_Speed = (fabs(static_cast<float>(Turning_Speed)) / Turning_Speed) * myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit__Lower_Speed_Limit;
+      }
+      L.setVelocity(Turning_Speed, percent);
+      R.setVelocity((-1.0 * Turning_Speed), percent);
+      L.spin(forward);
+      R.spin(forward);
+    wait(20, msec);
+    }
+  }
+  L.setStopping(hold);
+  R.setStopping(hold);
+  L.stop();
+  R.stop();
+  wait(0.2, seconds);
+}
+
+// "when started" hat block
+int whenStarted1() {
+  repeat(1) {
+    // Prepare
+    TouchLED3.setColor(green);
+    waitUntil(TouchLED3.pressing());
+    waitUntil((!TouchLED3.pressing()));
+    TouchLED3.setColor(red);
+    myblockfunction_Initialization();
+    BrainInertial.calibrate();
+    while (BrainInertial.isCalibrating()) { task::sleep(50); }
+    TouchLED3.setColor(green);
+    waitUntil(TouchLED3.pressing());
+    wait(20, msec);
+  }
+  // Start Up
+  waitUntil((!TouchLED3.pressing()));
+  TouchLED3.setColor(red);
+  wait(0.2, seconds);
+  repeat(1) {
+    // 4 green + (4 green + 1 purple)
+    Roller.spin(forward);
+    myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P(640.0, 0.0, 70.0, 15.0, 1.0);
+    myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit(90.0, Error_Adjustment, 40.0, 15.0);
+    myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P(70.0, 0.0, 50.0, 15.0, 1.0);
+    wait(0.2, seconds);
+    myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P(60.0, 0.0, 50.0, 15.0, 1.0);
+    wait(0.2, seconds);
+    myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P(100.0, 0.0, 50.0, 15.0, 1.0);
+    wait(20, msec);
+  }
+  repeat(1) {
+    // 7
+    myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit(-63.0, Error_Adjustment, 40.0, 15.0);
+    myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P(850.0, 0.0, 70.0, 15.0, 1.0);
+    myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit(-96.0, Error_Adjustment, 40.0, 15.0);
+    myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P(750.0, 0.0, 70.0, 15.0, 1.0);
+    wait(20, msec);
+  }
+  repeat(1) {
+    // 3 green + (4 green + 1 purple)
+    myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit(-170.0, Error_Adjustment, 40.0, 15.0);
+    myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P(420.0, 0.0, 70.0, 15.0, 1.0);
+    myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit(-77.0, Error_Adjustment, 40.0, 15.0);
+    myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P(80.0, 0.0, 70.0, 15.0, 1.0);
+    wait(0.2, seconds);
+    myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P(70.0, 0.0, 70.0, 15.0, 1.0);
+    wait(0.2, seconds);
+    myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P(0.0, 0.4, 70.0, 15.0, 1.0);
+    myblockfunction__Change_Direction__1__Target_Direction_Target_Direction_2__Error_Adjustment_Error_Adjustment_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit(40.0, Error_Adjustment, 40.0, 15.0);
+    Stay = 0.0;
+    myblockfunction__Curve_Movement__1__Left_Speed_Left_Speed_2__Right_Speed_Right_Speed_3__Move_Time_Move_Time_4__Wait_Time_Wait_Time(-100.0, -35.0, 0.7, 1.0);
+    target_direction = 7.0;
+    myblockfunction__Go_Straight__1__Distance_distance_2__Time_Time_3__Upper_Speed_Limit_Upper_Speed_Limit_4__Lower_Speed_Limit_Lower_Speed_Limit_5__P_value_P(0.0, -0.8, 100.0, 100.0, 2.0);
+    myblockfunction_Against();
+    Stay = 1.0;
+    wait(20, msec);
+  }
+  repeat(1) {
+    // Dump 1st Goal
+    Lifter.spin(forward);
+    waitUntil((Lifter.position(degrees) > 70.0));
+    Lifter.stop();
+    wait(0.6, seconds);
+    Lifter.spin(forward);
+    waitUntil((Lifter.position(degrees) > 120.0));
+    Lifter.stop();
+    wait(0.5, seconds);
+    Lifter.spinToPosition(1.0, degrees, false);
+    wait(20, msec);
+  }
+  return 0;
+}
+
+
+int main() {
+  whenStarted1();
+}
